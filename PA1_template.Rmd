@@ -107,25 +107,25 @@ timemax<-paste0(htimemax,':',mtimemax)
 
 ```
 
-It seems that on average most steps is made at `r timemax` and it's `r maxinterval$steps` steps.
+In our dataset most steps are made during `r timemax` interval and it's `r maxinterval$steps` steps.
 
 
 
 ## Imputing missing values
-Unfortunately ouer data has missing values. 
+Unfortunately our data has missing values. 
 
 ```{r, echo = TRUE}
 missing_values_sum<-sum(is.na(activity$steps))
 
 
 ```
-To be specyfic we have `r missing_values_sum` missing values.Lets replace them by mean of steps for corresponding interval.
+To be specific we have `r missing_values_sum` missing values. Let's replace them by mean of steps for corresponding interval.
 
 
 ```{r, echo = TRUE}
 activityfull<-activity %>% mutate(steps=ifelse(is.na(steps),average_steps_interval$steps,steps))
 ```
-Once again lets look for histogram of total numbers of steps taken per day. This time for data without missing values.
+Once again let's look for histogram of total numbers of steps taken per day. This time for data without missing values.
 
 ```{r, echo = TRUE}
   total_steps_day_f<-activityfull %>% select(steps,date) %>% group_by(date) %>% summarize(steps=sum(steps,na.rm=TRUE)) 
@@ -139,7 +139,7 @@ total_steps_day_median_f<-total_steps_day_f%>%ungroup() %>% summarize(median_ste
   abline(v = total_steps_day_median_f$median_steps_per_day, col = 7)
 ```
 
-Median is now equal `r total_steps_day_median_f` and mean is equal `r total_steps_day_mean_f`.
+Median is now equal to `r total_steps_day_median_f` and mean is equal to `r total_steps_day_mean_f`.
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -177,4 +177,4 @@ axis(1, at=c(0,600,1200,1800), labels=c("0:00","6:00","12:00","18:00"))
 
 ```
   
-We can see that on weekends the nuber of steps during all day is more constant. On weekday we can observe pick about 8:30 and the smaller one after 18:00.
+We can see that on weekends the number of steps during all day is less variable. On weekday we can observe peak about 8:30 and a smaller one after 18:00.
