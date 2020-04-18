@@ -1,8 +1,9 @@
 ---
-title: "Reproducible Research: Peer Assessment 1"
-output: 
+title: 'Reproducible Research: Peer Assessment 1'
+output:
   html_document:
-    keep_md: true
+    keep_md: yes
+  pdf_document: default
 ---
 
 ## Introduction
@@ -112,6 +113,7 @@ To be specific median of number of steps is 1.0395\times 10^{4} and mean 9354.22
   abline(v = total_steps_day_mean$mean_steps_per_day, col = 2)
   
   abline(v = total_steps_day_median$median_steps_per_day, col = 7)
+  legend("topright",legend = c("mean","median"),col = c(2,7),lty = 1)
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
@@ -175,6 +177,8 @@ Once again let's look for histogram of total numbers of steps taken per day. Thi
 total_steps_day_median_f<-total_steps_day_f%>%ungroup() %>% summarize(median_steps_per_day=median(steps,na.rm=TRUE))
 
   abline(v = total_steps_day_median_f$median_steps_per_day, col = 7)
+  
+  legend("topright",legend = c("mean","median"),col = c(2,7),lty = 1)
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
